@@ -15,7 +15,10 @@ class CreateGreetingCardsTable extends Migration
     {
         Schema::create('greeting_cards', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('invitation_id')->unsigned();
+            $table->text('comment');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

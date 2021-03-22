@@ -15,7 +15,11 @@ class CreateTemplateSettingsTable extends Migration
     {
         Schema::create('template_settings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('wedding_id')->constrained('weddings')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('theme');
+            $table->foreignId('category_id')->constrained('params')->onUpdate('cascade')->onDelete('cascade'); 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
