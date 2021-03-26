@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\ConfirmationController;
 use App\Http\Controllers\API\GreetCardController;
 use App\Http\Controllers\API\TemplateImageController;
 use App\Http\Controllers\API\WeddingController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::prefix('auth')->group(function() {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::get('fetch', [AuthController::class, 'fetch']);
+    });
+});
 
 Route::prefix('wedding')->group(function() {
     Route::get('/', [WeddingController::class, 'index']);
