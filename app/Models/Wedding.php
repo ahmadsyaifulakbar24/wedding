@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Wedding extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'weddings';
     protected $fillable = [
+        'slug',
         'order_name',
         'order_email',
         'order_phone_number',
@@ -41,6 +41,21 @@ class Wedding extends Model
 
     public function template_setting()
     {
-        return $this->hasOne(TemplateSetting::class, 'wedding_id')->with('template_image');
+        return $this->hasOne(TemplateSetting::class, 'wedding_id');
+    }
+
+    public function template_image()
+    {
+        return $this->hasMany(TemplateImage::class, 'wedding_id');
+    }
+
+    public function confirmation()
+    {
+        return $this->hasMany(Confirmation::class, 'wedding_id');
+    }
+
+    public function greeting_card()
+    {
+        return $this->hasMany(GreetingCard::class, 'wedding_id');
     }
 }

@@ -17,9 +17,9 @@ class CreateTemplateSettingsTable extends Migration
             $table->id();
             $table->foreignId('wedding_id')->constrained('weddings')->onUpdate('cascade')->onDelete('cascade');
             $table->string('theme');
+            $table->enum('package', ['bronze', 'silver', 'gold']);
             $table->foreignId('category_id')->constrained('params')->onUpdate('cascade')->onDelete('cascade'); 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

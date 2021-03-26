@@ -48,5 +48,12 @@ class ParamSeeder extends Seeder
             'order' => 4,
             'active' => 1,
         ]);
+
+        DB::table('params')->insert([
+            'category_param' => 'category_template',
+            'param' => 'Lainnya',
+            'order' => 4,
+            'active' => 1,
+        ]);
     }
 }

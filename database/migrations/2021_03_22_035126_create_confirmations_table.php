@@ -16,10 +16,9 @@ class CreateConfirmationsTable extends Migration
         Schema::create('confirmations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('wedding_id')->constrained('weddings')->onUpdate('cascade')->onDelete('cascade');
-            $table->bigInteger('invitation_id')->unsigned();
+            $table->string('name');
             $table->string('status');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -15,12 +15,11 @@ class CreateTemplateImagesTable extends Migration
     {
         Schema::create('template_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('template_setting_id')->constrained('template_settings')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('wedding_id')->constrained('weddings')->onUpdate('cascade')->onDelete('cascade');
             $table->string('type');
             $table->text('image');
             $table->integer('order');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

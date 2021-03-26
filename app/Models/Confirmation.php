@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Confirmation extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'confirmations';
     protected $fillable = [
         'wedding_id', 
-        'invitation_id', 
+        'name', 
         'status'
     ];
+
+    public function wedding()
+    {
+        return $this->belongsTo(Wedding::class, 'wedding_id');
+    }
 }

@@ -15,6 +15,7 @@ class CreateWeddingsTable extends Migration
     {
         Schema::create('weddings', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique();
             $table->string('order_name');
             $table->string('order_email');
             $table->string('order_phone_number');
@@ -41,7 +42,6 @@ class CreateWeddingsTable extends Migration
 
             $table->boolean('active')->default(false);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

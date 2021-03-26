@@ -15,10 +15,10 @@ class CreateGreetingCardsTable extends Migration
     {
         Schema::create('greeting_cards', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('invitation_id')->unsigned();
+            $table->foreignId('wedding_id')->constrained('weddings')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('name');
             $table->text('comment');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

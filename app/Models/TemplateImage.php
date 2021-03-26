@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TemplateImage extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'template_images';
     protected $fillable = [
-        'template_setting_id', 
+        'wedding_id', 
         'type', 
         'image', 
         'order'
@@ -27,9 +26,10 @@ class TemplateImage extends Model
         'image_url'
     ];
 
-    public function template_setting()
+
+    public function wedding()
     {
-        return $this->belongsTo(TemplateSetting::class, 'template_setting_id');
+        return $this->belongsTo(Wedding::class, 'wedding_id');
     }
 
 }
